@@ -12,6 +12,7 @@ using System.Windows.Forms;
 namespace TextEditer31095 {
     public partial class Form1 : Form {
         string fileName = "";
+        int ctk = 0;
         public Form1() {
             InitializeComponent();
             initbutton();
@@ -22,20 +23,49 @@ namespace TextEditer31095 {
             rtbTextArea.Text = "";
             fileName = "";
             initbutton();
+            
         }
         //アプリ終了
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e) {
-            Application.Exit();
+            if (ctk > 0) {
+                DialogResult result = MessageBox.Show("保存する？", "警告", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
+                if (result == DialogResult.Yes) {
+                    if (fileName == "") {
+                        NameSaveToolStripMenuItem_Click(sender, e);
+                    } else {
+                        updateSave保存ToolStripMenuItem_Click(sender, e);
+                    }
+                } else if (result == DialogResult.No) {
+                    Application.Exit();
+                }
+
+            } else {
+                Application.Exit();
+                
+            }
+            
         }
         //[開く]ダイアログを表示
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e) {
-
-
-            if(ofdFileOpen.ShowDialog() == DialogResult.OK) {
-                rtbTextArea.LoadFile(@ofdFileOpen.FileName,RichTextBoxStreamType.RichText);
-                fileName = ofdFileOpen.FileName;
+            if (ctk > 0) {
+                DialogResult result = MessageBox.Show("保存する？", "警告", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
+                if (result == DialogResult.Yes) {
+                    if (fileName == "") {
+                        NameSaveToolStripMenuItem_Click(sender, e);
+                    } else {
+                        updateSave保存ToolStripMenuItem_Click(sender, e);
+                    }
+                } else if (result == DialogResult.No) {
+                    if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
+                        rtbTextArea.LoadFile(@ofdFileOpen.FileName, RichTextBoxStreamType.RichText);
+                        fileName = ofdFileOpen.FileName;
+                    }
+                }
             }
+
+            
             initbutton();
+
         }
         //[名前を付けて保存]ダイアログを表示
         private void NameSaveToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -46,6 +76,7 @@ namespace TextEditer31095 {
                    
             }
             initbutton();
+            ctk = 0;
         }      
         //上書き保存
         private void updateSave保存ToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -58,6 +89,7 @@ namespace TextEditer31095 {
                     }
                 }
             initbutton();
+            ctk = 0;
             }
         //元に戻す
         private void UndoToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -142,6 +174,15 @@ namespace TextEditer31095 {
                 CopyToolStripMenuItem.Enabled = true;
             }
             
+        }
+        void error() {
+            if (fileName == "" || ctk > 0) {
+                MessageBox.Show("保存する？","警告",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Error);
+            }
+        }
+
+        private void rtbTextArea_KeyUp(object sender, KeyEventArgs e) {
+            ctk = 1;
         }
     }
 }
