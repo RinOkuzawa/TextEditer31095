@@ -20,50 +20,28 @@ namespace TextEditer31095 {
 
         //新規作成//新規作成
         private void NewToolStripMenuItem_Click(object sender, EventArgs e) {
+            error(sender,e);
             rtbTextArea.Text = "";
             fileName = "";
+            this.Text = "テキストエディタ" + fileName;
             initbutton();
             
         }
         //アプリ終了
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (ctk > 0) {
-                DialogResult result = MessageBox.Show("保存する？", "警告", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
-                if (result == DialogResult.Yes) {
-                    if (fileName == "") {
-                        NameSaveToolStripMenuItem_Click(sender, e);
-                    } else {
-                        updateSave保存ToolStripMenuItem_Click(sender, e);
-                    }
-                } else if (result == DialogResult.No) {
-                    Application.Exit();
-                }
-
-            } else {
-                Application.Exit();
-                
-            }
-            
+            error(sender,e);
+            Application.Exit();     
         }
+
         //[開く]ダイアログを表示
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (ctk > 0) {
-                DialogResult result = MessageBox.Show("保存する？", "警告", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
-                if (result == DialogResult.Yes) {
-                    if (fileName == "") {
-                        NameSaveToolStripMenuItem_Click(sender, e);
-                    } else {
-                        updateSave保存ToolStripMenuItem_Click(sender, e);
-                    }
-                } else if (result == DialogResult.No) {
+
+            error(sender ,e);
                     if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
                         rtbTextArea.LoadFile(@ofdFileOpen.FileName, RichTextBoxStreamType.RichText);
                         fileName = ofdFileOpen.FileName;
-                    }
-                }
-            }
-
-            
+                        this.Text = "テキストエディタ" + fileName;
+                    }  
             initbutton();
 
         }
@@ -175,9 +153,16 @@ namespace TextEditer31095 {
             }
             
         }
-        void error() {
-            if (fileName == "" || ctk > 0) {
-                MessageBox.Show("保存する？","警告",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Error);
+        void error(object sender,EventArgs e) {
+            if (ctk > 0) {
+                DialogResult result = MessageBox.Show("保存する？", "警告", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
+                if (result == DialogResult.Yes) {
+                    if (fileName == "") {
+                     NameSaveToolStripMenuItem_Click(sender, e);
+                    } else {
+                        updateSave保存ToolStripMenuItem_Click(sender, e);
+                    }
+                }
             }
         }
 
