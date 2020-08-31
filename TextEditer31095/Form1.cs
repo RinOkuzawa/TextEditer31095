@@ -169,6 +169,12 @@ namespace TextEditer31095 {
         private void rtbTextArea_KeyUp(object sender, KeyEventArgs e) {
             ctk = 1;
         }
+
+        private void VersionToolStripMenuItem_Click(object sender, EventArgs e) {
+            //VersionForm versionForm = new VersionForm();
+            VersionForm.GetInstance().Show();
+            //versionForm.Show(); //モーダルダイアログとして表示
+        }
     }
 }
 

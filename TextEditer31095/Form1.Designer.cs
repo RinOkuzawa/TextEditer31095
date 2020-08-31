@@ -43,7 +43,8 @@
             this.ColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.文字コードCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdFileOpen = new System.Windows.Forms.OpenFileDialog();
             this.sfdFileSave = new System.Windows.Forms.SaveFileDialog();
             this.rtbTextArea = new System.Windows.Forms.RichTextBox();
@@ -58,7 +59,7 @@
             this.FileToolStripMenuItem,
             this.EditToolStripMenuItem,
             this.文字コードCToolStripMenuItem,
-            this.ヘルプHToolStripMenuItem});
+            this.HelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(896, 24);
@@ -218,11 +219,20 @@
             this.文字コードCToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.文字コードCToolStripMenuItem.Text = "文字コード(&C)";
             // 
-            // ヘルプHToolStripMenuItem
+            // HelpToolStripMenuItem
             // 
-            this.ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
-            this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
+            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.VersionToolStripMenuItem});
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.HelpToolStripMenuItem.Text = "ヘルプ(&H)";
+            // 
+            // VersionToolStripMenuItem
+            // 
+            this.VersionToolStripMenuItem.Name = "VersionToolStripMenuItem";
+            this.VersionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.VersionToolStripMenuItem.Text = "バージョン情報...";
+            this.VersionToolStripMenuItem.Click += new System.EventHandler(this.VersionToolStripMenuItem_Click);
             // 
             // ofdFileOpen
             // 
@@ -275,7 +285,7 @@
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 文字コードCToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofdFileOpen;
         private System.Windows.Forms.SaveFileDialog sfdFileSave;
         private System.Windows.Forms.RichTextBox rtbTextArea;
@@ -291,6 +301,7 @@
         private System.Windows.Forms.ToolStripMenuItem FontToolStripMenuItem;
         private System.Windows.Forms.ColorDialog cldColor;
         private System.Windows.Forms.FontDialog ftdFont;
+        private System.Windows.Forms.ToolStripMenuItem VersionToolStripMenuItem;
     }
 }
 
